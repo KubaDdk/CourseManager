@@ -1,0 +1,30 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Teacher</th>
+        <th scope="col">Course</th>
+        <th scope="col">Lessons</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let block of course.lessonBlocks">
+        <td>{{ block.id }}</td>
+        <td>{{ block.subject }}</td>
+        <td><p *ngIf="block.teacherId" >{{block.teacherId}} <a routerLink="/users/{{block.teacherId}}">{{block.teacherName}}</a></p>
+          <p *ngIf="!block.teacherId" ><a routerLink="/courses/assign-teacher" [queryParams]="{lessonBlockId: block.id}">assign teacher</a></p></td>
+        <td ><a routerLink="/courses/{{course.id}}">{{course.name}}</a></td>
+        <td>        <ul *ngFor="let lesson of block.lessons">
+          <p>{{lesson.subject}} {{lesson.date}}</p>
+        </ul></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
